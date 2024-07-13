@@ -10,7 +10,7 @@ origins = [
     "https://localhost.tiangolo.com",
     "http://localhost",
     "http://localhost:8080",
-    "https://fastapi-ds.up.railway.app",
+    "http://127.0.0.1:5500/",
 ]
 
 app.add_middleware(
