@@ -6,9 +6,9 @@ import mysql.connector as mys
 
 conexao = mys.connect(
     host="monorail.proxy.rlwy.net",
-    port='48006',
+    port='25969',
     user="root",
-    password="cXYGNalOPUlWwDaGqVvOLaLxQvZTbvSh",
+    password="IDpNJKkbCupRBHxeslRyoYRGfoZTPKmB",
     database="railway",
 )
 
