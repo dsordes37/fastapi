@@ -2,6 +2,19 @@ from typing import Union
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+import mysql.connector as mys
+
+conexao = mys.connect(
+    host="monorail.proxy.rlwy.net",
+    port='48006',
+    user="root",
+    password="cXYGNalOPUlWwDaGqVvOLaLxQvZTbvSh",
+    database="railway",
+)
+
+cursor=conexao.cursor()
+
+
 app = FastAPI()
 
 
@@ -22,15 +35,19 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+vendas=[]
 
-vendas={
-    1:{'item':'lata', 'preco_uni':2.50, 'quantidade':5},
-    2:{'item':'chinelo', 'preco_uni':35.50, 'quantidade':1},
-    3:{'item':'lata', 'preco_uni':2.50, 'quantidade':80},
-    4:{'item':'garrafa', 'preco_uni':8, 'quantidade':4},
-    5:{'item':'lata', 'preco_uni':2.50, 'quantidade':30},
-    6:{'item':'lata', 'preco_uni':2.50, 'quantidade':30},
-}
+cursor.execute('select * from produtos')
+result=cursor.fetchall()
+
+for r in result:
+    vendas.append({
+        'item':r[1],
+        'preco_uni':r[2],
+        'quantidade':r[3]
+    })
+
+
 
 @app.get('/')
 def home():
