@@ -37,7 +37,7 @@ app.add_middleware(
 
 vendas=[]
 
-cursor.execute('select * from produtos')
+cursor.execute('select * from Produtos')
 result=cursor.fetchall()
 
 for r in result:
