@@ -80,8 +80,8 @@ def home():
 def get_venda(id_venda:int):
     vendas=consulta()
     if (len(vendas)-1) >= id_venda and id_venda>-1:
-        return vendas[id_venda]
+        return vendas[id_venda-1]
     else:
-        return {'erro':f'id da venda é inexistente.tente números entre 0 e {len(vendas)-1}'}
+        return {'erro':f'id da venda é inexistente.tente números entre 1 e {len(vendas)-1}'}
 
 
