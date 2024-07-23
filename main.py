@@ -42,10 +42,14 @@ result=cursor.fetchall()
 
 for r in result:
     vendas.append({
+        'id':r[0],
         'item':r[1],
         'preco_uni':r[2],
         'quantidade':r[3]
     })
+
+
+
 
 
 
@@ -56,7 +60,9 @@ def home():
 
 @app.get('/vendas/{id_venda}')
 def get_venda(id_venda:int):
-    if id_venda in vendas:
+    if (len(vendas)-1) >= id_venda and id_venda>-1:
         return vendas[id_venda]
     else:
-        return {'erro':f'id da venda é inexistente.tente números entre 1 e {len(vendas)}'}
+        return {'erro':f'id da venda é inexistente.tente números entre 0 e {len(vendas)-1}'}
+
+
