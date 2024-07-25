@@ -1,16 +1,18 @@
 import mysql.connector as mys
 
 
-conexao = mys.connect(
-    host="monorail.proxy.rlwy.net",
-    port='25969',
-    user="root",
-    password="IDpNJKkbCupRBHxeslRyoYRGfoZTPKmB",
-    database="railway",
-)
+def criaConexao(host, port, user, password, database):
+    return mys.connect(
+        host=host,
+        port=port,
+        user=user,
+        password=password,
+        database=database,
+    )
 
 
-cursor=conexao.cursor()
+def criaCursor(conexao):
+    return conexao.cursor()
 
 
 
@@ -20,6 +22,9 @@ cursor=conexao.cursor()
 
 def consulta():
     vendas=[]
+    conexao=criaConexao("monorail.proxy.rlwy.net",'25969',"root","IDpNJKkbCupRBHxeslRyoYRGfoZTPKmB","railway",)
+    cursor=criaCursor(conexao)
+
     cursor.execute('select * from Produtos')
     result=cursor.fetchall()
 
