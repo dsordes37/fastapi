@@ -2,11 +2,15 @@ from typing import Union
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
+from pydantic import BaseModel
 
 from src.controle import *
 
 
-
+class Venda(BaseModel):
+    nome:str
+    valor_uni:float
+    quantidade:int    
 
 
 app = FastAPI()
@@ -46,3 +50,11 @@ async def home():
 async def get_venda(id:int):
     return getVendaById(id)
 
+
+@app.post('/insert')
+async def insert_venda(venda:Venda):
+    insert_venda(venda.nome, venda.valor_uni, venda.quantidade)
+    return 'foi'
+
+
+#MÉTODOS HTTP: GET POST PUT DELETE
