@@ -1,9 +1,9 @@
 from typing import Union
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import FileResponse
 
-from src.bd import consulta
-
+from src.controle import *
 
 
 
@@ -29,24 +29,20 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+@app.get('/favicon.ico', include_in_schema=False)
+async def favicon():
+    return FileResponse('favicon.ico')
 
 
 
 
 @app.get('/')
-def home():
-    vendas=consulta()
+async def home():
+    vendas=getVendas()
     return {"qtd_vendas":len(vendas), "info_vendas":vendas}
 
 
-@app.get('/vendas/{id_venda}')
-def get_venda(id_venda:int):
-    vendas=consulta()
-
-    
-    if len(vendas) >= id_venda and id_venda>-1:
-        return vendas[id_venda-1]
-    else:
-        return {'erro':f'id da venda é inexistente.tente números entre 1 e {len(vendas)}'}
-
+@app.get('/pesquisa')
+async def get_venda(id:int):
+    return getVendaById(id)
 
