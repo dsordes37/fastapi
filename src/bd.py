@@ -36,7 +36,5 @@ def consulta():
             'quantidade':r[3]
         })
     
-    
-    
     return vendas
 
