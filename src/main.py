@@ -53,8 +53,8 @@ async def get_venda(id:int):
 
 @app.post('/insert')
 async def insert_venda(venda:Venda):
-    insert_venda(venda.nome, venda.valor_uni, venda.quantidade)
-    return 'foi'
+    #insert_venda(venda.nome, venda.valor_uni, venda.quantidade)
+    return venda
 
 
 #MÉTODOS HTTP: GET POST PUT DELETE
