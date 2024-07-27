@@ -57,11 +57,13 @@ def inserir(nome, preco_unitario, quantidade):
     conexao=criaConexao("monorail.proxy.rlwy.net",'25969',"root","IDpNJKkbCupRBHxeslRyoYRGfoZTPKmB","railway",)
     cursor=criaCursor(conexao)
 
-    cursor.execute(f"INSERT INTO Produtos(nome, preco_uni, quantidade) VALUES({nome}, {preco_unitario}, {quantidade});")
+    valores=[nome, preco_unitario, quantidade]
+
+    cursor.execute("INSERT INTO Produtos(nome, preco_uni, quantidade) VALUES(%s, %s, %s);", valores)
     conexao.commit()
 
-    cursor.close()
     conexao.close()
+    cursor.close()
 
 
 
