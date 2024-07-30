@@ -6,7 +6,7 @@ def getVendas():
     for item in dados:
         vendas.append({
             'id':item[0],
-            'item':item[1],
+            'nome':item[1],
             'preco_uni':item[2],
             'quantidade':item[3]
         })
@@ -20,7 +20,7 @@ def getVendaById(id):
     if dados != 'inválido':
         venda={
             'id':dados[0],
-            'item':dados[1],
+            'nome':dados[1],
             'preco_uni':dados[2],
             'quantidade':dados[3]
         }
@@ -33,7 +33,7 @@ def insertVenda(nome, preco_unitario, quantidade):
     inserir(nome, preco_unitario, quantidade)
 
 def updateVendaById(id, coluna, valor):
-    pass
+    editar(coluna, valor, id)
 
 def deleteById(id):
-    pass
+    deletar(id)

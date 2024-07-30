@@ -12,6 +12,9 @@ class Venda(BaseModel):
     valor_uni:float
     quantidade:int    
 
+class UpdateVenda(BaseModel):
+    coluna:str
+    valor:str
 
 app = FastAPI()
 
@@ -59,5 +62,21 @@ async def insert_venda(venda:Venda):
         'dados':venda
     }
 
+@app.put('/update/{id}')
+async def update_venda(id:str, venda:UpdateVenda):
+    updateVendaById(id, venda.coluna, venda.valor)
+    return {
+        'mensagem':'dados editados com sucesso',
+        'dados':venda
+    }
+
+@app.delete('/delete/{id}')
+async def delete_venda(id:str):
+    deleteById(id)
+    return {
+        'mensagem':'dados excluidos com sucesso.'
+    }
+
+    
 
 #MÉTODOS HTTP: GET POST PUT DELETE

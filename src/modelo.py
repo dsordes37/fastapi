@@ -71,12 +71,13 @@ def inserir(nome, preco_unitario, quantidade):
 def editar(coluna, valor, id):
     conexao=criaConexao("monorail.proxy.rlwy.net",'25969',"root","IDpNJKkbCupRBHxeslRyoYRGfoZTPKmB","railway",)
     cursor=criaCursor(conexao)
+    valores=[coluna, valor, id]
 
-    cursor.execute(F"UPDATE Produtos SET {coluna}={valor} WHERE id={id}")
+    cursor.execute(F"UPDATE Produtos SET {coluna}='{valor}' WHERE id={id}")
     conexao.commit()
 
-    cursor.close()
     conexao.close()
+    cursor.close()
 
 
 
@@ -88,5 +89,5 @@ def deletar(id):
     cursor.execute(f"DELETE FROM Produtos WHERE id={id}")
     conexao.commit()
 
-    cursor.close()
     conexao.close()
+    cursor.close()
